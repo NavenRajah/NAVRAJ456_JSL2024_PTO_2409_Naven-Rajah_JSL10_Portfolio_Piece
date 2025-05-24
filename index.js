@@ -1,6 +1,7 @@
 // TASK: import helper functions from utils
-// TASK: import initialData
 import { initialData } from "./initialData.js";
+
+// TASK: import initialData
 import { getTasks, saveTasks, removeTask } from "./utils/localStorageUtils.js";
 
 /*************************************************************************************************************************************************
@@ -17,10 +18,20 @@ function initializeData() {
   }
 }
 
+
 // TASK: Get elements from the DOM
 const elements = {
-
-}
+  headerBoardName: document.getElementById('header-board-name'),
+  boardsNav: document.getElementById('boards-nav-links-div'),
+  taskColumns: document.querySelectorAll('.task-column'),
+  addTaskBtn: document.getElementById('add-task-btn'),
+  modal: document.getElementById('task-modal'),
+  taskForm: document.getElementById('task-form'),
+  taskTitleInput: document.getElementById('task-title'),
+  taskDescriptionInput: document.getElementById('task-description'),
+  taskStatusSelect: document.getElementById('task-status'),
+  closeModalBtn: document.getElementById('close-modal')
+};
 
 let activeBoard = ""
 
