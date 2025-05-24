@@ -1,8 +1,7 @@
 // TASK: import helper functions from utils
-import { initialData } from "./initialData.js";
-
 // TASK: import initialData
-import { getTasks, saveTasks, removeTask } from "./utils/localStorageUtils.js";
+import { getTasks, saveTasks } from './utils/localStorageUtils.js';
+import { initialData } from './initialData.js';
 
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
@@ -18,20 +17,10 @@ function initializeData() {
   }
 }
 
-
 // TASK: Get elements from the DOM
 const elements = {
-  headerBoardName: document.getElementById('header-board-name'),
-  boardsNav: document.getElementById('boards-nav-links-div'),
-  taskColumns: document.querySelectorAll('.task-column'),
-  addTaskBtn: document.getElementById('add-task-btn'),
-  modal: document.getElementById('task-modal'),
-  taskForm: document.getElementById('task-form'),
-  taskTitleInput: document.getElementById('task-title'),
-  taskDescriptionInput: document.getElementById('task-description'),
-  taskStatusSelect: document.getElementById('task-status'),
-  closeModalBtn: document.getElementById('close-modal')
-};
+
+}
 
 let activeBoard = ""
 
@@ -41,51 +30,41 @@ function fetchAndDisplayBoardsAndTasks() {
   const tasks = getTasks();
   const boards = [...new Set(tasks.map(task => task.board).filter(Boolean))];
   displayBoards(boards);
-
   if (boards.length > 0) {
-    const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"));
-    activeBoard = localStorageBoard ? localStorageBoard : boards[0];
-    elements.headerBoardName.textContent = activeBoard;
-    styleActiveBoard(activeBoard);
+    const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"))
+    activeBoard = localStorageBoard ? localStorageBoard ;  boards[0]; 
+    elements.headerBoardName.textContent = activeBoard
+    styleActiveBoard(activeBoard)
     refreshTasksUI();
   }
 }
-
 
 // Creates different boards in the DOM
 // TASK: Fix Bugs
 function displayBoards(boards) {
   const boardsContainer = document.getElementById("boards-nav-links-div");
-  boardsContainer.innerHTML = '';
+  boardsContainer.innerHTML = ''; // Clears the container
   boards.forEach(board => {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
     boardElement.classList.add("board-btn");
-
-    boardElement.addEventListener("click", () => {
+    boardElement.click()  { 
       elements.headerBoardName.textContent = board;
       filterAndDisplayTasksByBoard(board);
-      activeBoard = board;
-      localStorage.setItem("activeBoard", JSON.stringify(activeBoard));
-      styleActiveBoard(activeBoard);
-    });
-
+      activeBoard = board //assigns active board
+      localStorage.setItem("activeBoard", JSON.stringify(activeBoard))
+      styleActiveBoard(activeBoard)
+    };
     boardsContainer.appendChild(boardElement);
   });
+
 }
 
 // Filters tasks corresponding to the board name and displays them on the DOM.
 // TASK: Fix Bugs
-function styleActiveBoard(boardName) {
-  const allBtns = document.querySelectorAll(".board-btn");
-  allBtns.forEach(btn => {
-    if (btn.textContent === boardName) {
-      btn.classList.add("active");
-    } else {
-      btn.classList.remove("active");
-    }
-  });
-}
+function filterAndDisplayTasksByBoard(boardName) {
+  const tasks = getTasks(); // Fetch tasks from a simulated local storage function
+  const filteredTasks = tasks.filter(task => task.board = boardName);
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
