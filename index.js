@@ -19,13 +19,26 @@ function initializeData() {
 const elements = {
   headerBoardName: document.getElementById("header-board-name"),
   createNewTaskBtn: document.getElementById("create-task-btn"),
-  filterDiv: document.getElementById("filter-div"),
+  filterDiv: document.getElementById("filterDiv"),
   modalWindow: document.getElementById("task-modal"),
   taskForm: document.getElementById("task-form"),
   taskTitleInput: document.getElementById("task-title"),
   taskDescriptionInput: document.getElementById("task-description"),
   taskStatusSelect: document.getElementById("task-status"),
   columnDivs: document.querySelectorAll(".column-div"),
+
+  // Edit Modal Elements:
+  editTaskModal: document.getElementById("edit-task-modal"),
+  editTaskTitleInput: document.getElementById("edit-task-title"),
+  editTaskDescriptionInput: document.getElementById("edit-task-description"),
+  editTaskStatusSelect: document.getElementById("edit-task-status"),
+  saveChangesBtn: document.getElementById("save-changes-btn"),
+  cancelEditBtn: document.getElementById("cancel-edit-btn"),
+  deleteTaskBtn: document.getElementById("delete-task-btn"),
+  cancelAddTaskBtn: document.getElementById("cancel-add-task-btn"),
+
+  hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
+  showSideBarBtn: document.getElementById("show-side-bar-btn"),
 };
 
 let activeBoard = "";
@@ -145,43 +158,62 @@ function addTaskToUI(task) {
 }
 
 function setupEventListeners() {
-  // Cancel editing task event listener
-  const cancelEditBtn = document.getElementById("cancel-edit-btn");
-  cancelEditBtn.addEventListener("click", () =>
-    toggleModal(false, elements.editTaskModal)
-  );
-
   // Cancel adding new task event listener
-  const cancelAddTaskBtn = document.getElementById("cancel-add-task-btn");
-  cancelAddTaskBtn.addEventListener("click", () => {
-    toggleModal(false);
-    elements.filterDiv.style.display = "none"; // Also hide the filter overlay
-  });
+  if (elements.cancelAddTaskBtn) {
+    elements.cancelAddTaskBtn.addEventListener("click", () => {
+      toggleModal(false);
+      elements.filterDiv.style.display = "none";
+    });
+  }
 
   // Clicking outside the modal to close it
-  elements.filterDiv.addEventListener("click", () => {
-    toggleModal(false);
-    elements.filterDiv.style.display = "none"; // Also hide the filter overlay
-  });
-
-  // Show sidebar event listener
-  elements.hideSideBarBtn.addEventListener("click", () => toggleSidebar(false));
-  elements.showSideBarBtn.addEventListener("click", () => toggleSidebar(true));
-
-  // Theme switch event listener
-  elements.themeSwitch.addEventListener("change", toggleTheme);
+  if (elements.filterDiv) {
+    elements.filterDiv.addEventListener("click", () => {
+      toggleModal(false);
+      elements.filterDiv.style.display = "none";
+    });
+  }
 
   // Show Add New Task Modal event listener
-  elements.createNewTaskBtn.addEventListener("click", () => {
-    toggleModal(true);
-    elements.filterDiv.style.display = "block"; // Also show the filter overlay
-  });
+  if (elements.createNewTaskBtn) {
+    elements.createNewTaskBtn.addEventListener("click", () => {
+      toggleModal(true);
+      elements.filterDiv.style.display = "block";
+    });
+  }
 
   // Add new task form submission event listener
-  elements.modalWindow.addEventListener("submit", (event) => {
-    addTask(event);
-  });
+  if (elements.modalWindow) {
+    elements.modalWindow.addEventListener("submit", (event) => {
+      addTask(event);
+    });
+  }
 }
+
+// Clicking outside the modal to close it
+elements.filterDiv.addEventListener("click", () => {
+  toggleModal(false);
+  elements.filterDiv.style.display = "none"; // Also hide the filter overlay
+});
+
+// Show sidebar event listener
+elements.hideSideBarBtn.addEventListener("click", () => toggleSidebar(false));
+elements.showSideBarBtn.addEventListener("click", () => toggleSidebar(true));
+
+// Theme switch event listener
+elements.themeSwitch.addEventListener("change", toggleTheme);
+
+// Show Add New Task Modal event listener
+elements.createNewTaskBtn.addEventListener("click", () => {
+  toggleModal(true);
+  elements.filterDiv.style.display = "block"; // Also show the filter overlay
+});
+
+// Add new task form submission event listener
+elements.modalWindow.addEventListener("submit", (event) => {
+  addTask(event);
+});
+
 // Toggles tasks modal
 // Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) {
