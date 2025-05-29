@@ -1,6 +1,6 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
-import { getTasks, saveTasks } from "./utils/localStorageUtils.js";
+import { getTasks, saveTasks } from "./utils/taskFunctions.js";
 import { initialData } from "./initialData.js";
 
 /*************************************************************************************************************************************************
