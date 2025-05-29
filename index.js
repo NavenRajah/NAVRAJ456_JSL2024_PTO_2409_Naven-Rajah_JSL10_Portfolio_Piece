@@ -17,6 +17,7 @@ function initializeData() {
 
 // TASK: Get elements from the DOM
 const elements = {
+  headerBoardName: document.getElementById("header-board-name"),
   createNewTaskBtn: document.getElementById("create-task-btn"),
   filterDiv: document.getElementById("filter-div"),
   modalWindow: document.getElementById("task-modal"),
@@ -24,6 +25,7 @@ const elements = {
   taskTitleInput: document.getElementById("task-title"),
   taskDescriptionInput: document.getElementById("task-description"),
   taskStatusSelect: document.getElementById("task-status"),
+  columnDivs: document.querySelectorAll(".column-div"),
 };
 
 let activeBoard = "";
@@ -278,7 +280,8 @@ function saveTaskChanges(taskId) {
 /*************************************************************************************************************************************************/
 
 document.addEventListener("DOMContentLoaded", function () {
-  init(); // init is called after the DOM is fully loaded
+  initializeData(); // always first!
+  init(); // now safe to run setup
 });
 
 function init() {
@@ -289,8 +292,3 @@ function init() {
   document.body.classList.toggle("light-theme", isLightTheme);
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  initializeData();
-  // any other setup functions go here
-});
