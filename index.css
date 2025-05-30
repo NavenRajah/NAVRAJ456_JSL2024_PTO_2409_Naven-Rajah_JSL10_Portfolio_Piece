@@ -22,7 +22,7 @@
 }
 
 body {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   display: flex;
   min-height: 100vh;
   flex-direction: row;
@@ -41,7 +41,7 @@ body {
   flex: 1;
   flex-direction: column;
   /* border: 2px solid green; */
-  overflow-x: hidden
+  overflow-x: hidden;
 }
 
 .side-bar {
@@ -50,7 +50,7 @@ body {
   /* border: 5px solid rgb(0, 0, 0); */
   border-right: 0.1px solid #979797;
   /* flex: 0.8; */
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 50px;
   /* padding-left: 50px; */
@@ -82,7 +82,7 @@ body {
   height: 40px;
   background-color: transparent;
   border: 0;
-  color: #219C90;
+  color: #219c90;
   font-size: 16px;
   cursor: pointer;
   overflow: hidden;
@@ -94,7 +94,6 @@ body {
   filter: invert(21%) sepia(95%) saturate(5663%) hue-rotate(150deg)
     brightness(88%) contrast(88%);
 }
-
 
 .board-btn {
   font-family: inherit;
@@ -117,7 +116,7 @@ body {
 }
 
 .active {
-  background-color: #219C90;
+  background-color: #219c90;
   color: white;
   font-weight: 500;
   padding: 28px 12px 28px 50px;
@@ -139,15 +138,15 @@ body {
 }
 
 #todo-dot {
-  background-color: #D83F31;
+  background-color: #d83f31;
 }
 
 #doing-dot {
-  background-color: #E9B824;
+  background-color: #e9b824;
 }
 
 #done-dot {
-  background-color: #219C90;
+  background-color: #219c90;
 }
 
 h4 {
@@ -179,8 +178,8 @@ h4 {
   position: absolute;
   bottom: 45px;
   border-radius: 0 20px 20px 0;
-  background-color: #219C90;
-  display: none;
+  background-color: #219c90;
+  display: flex;
   cursor: pointer;
 }
 
@@ -230,7 +229,7 @@ header {
 }
 
 #add-new-task-btn {
-  background-color: #219C90;
+  background-color: #219c90;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -381,13 +380,11 @@ header {
   padding: 10px 0; /* You can adjust the top and bottom padding as needed */
 }
 
-
 .edit-task-div.button-group .editBtns {
   flex: 1; /* flex-grow: 1, flex-shrink: 1, flex-basis: 0% */
   min-height: 60px;
   margin: 0 4px; /* Adjust as needed for spacing between buttons */
 }
-
 
 .edit-task-modal-window {
   position: fixed;
@@ -472,7 +469,7 @@ header {
 }
 
 #save-task-changes-btn {
-  background-color: #219C90;
+  background-color: #219c90;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -482,7 +479,7 @@ header {
 }
 
 #cancel-edit-btn {
-  background-color:#E9B824;
+  background-color: #e9b824;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -492,7 +489,7 @@ header {
 }
 
 #delete-task-btn {
-  background-color:#ea5555;
+  background-color: #ea5555;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -654,7 +651,7 @@ input#edit-task-title-input.task-title-input {
 }
 
 #edit-select-status {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 14px;
   height: 40px;
   padding: 10px;
@@ -674,7 +671,7 @@ input#edit-task-title-input.task-title-input {
 }
 
 .submit-btn {
-  background-color: #219C90;
+  background-color: #219c90;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -698,7 +695,7 @@ input#edit-task-title-input.task-title-input {
 }
 
 textarea {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 16px;
   color: black;
   height: 90px;
@@ -997,19 +994,17 @@ input:checked + #label-checkbox-theme:after {
   }
 
   .header-board-name {
-  font-family: 'IBM Plex Sans', sans-serif;
-}
+    font-family: "IBM Plex Sans", sans-serif;
+  }
 
-.header-board-name {
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-
+  .header-board-name {
+    font-family: "IBM Plex Sans", sans-serif;
+  }
 
   #deleteBoardBtn {
     font-size: 12px;
     font-weight: 500;
   }
-
 
   #header-board-name {
     font-size: 16px;
@@ -1045,9 +1040,6 @@ input:checked + #label-checkbox-theme:after {
     width: 95%;
   }
 }
-
-
-
 
 @media screen and (max-width: 480px) {
   .side-bar.show-sidebar {
@@ -1340,8 +1332,6 @@ input:checked + #label-checkbox-theme:after {
     font-size: 1em;
   }
 }
-
-
 
 /* Laptops and Desktops */
 @media screen and (min-width: 1025px) {

@@ -273,7 +273,7 @@ function saveTaskChanges(taskId) {
 function toggleSidebar(show) {
   const sidebar = document.getElementById("side-bar-div");
   if (!sidebar) return;
-  sidebar.style.display = show ? "block" : "none";
+  sidebar.style.display = show ? "flex" : "none";
   localStorage.setItem("showSideBar", show ? "true" : "false");
 }
 
@@ -287,5 +287,4 @@ function init() {
   const showSidebar = localStorage.getItem("showSideBar") === "true";
   toggleSidebar(showSidebar);
   fetchAndDisplayBoardsAndTasks();
-  // Theme toggle if needed
 }
