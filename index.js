@@ -26,8 +26,7 @@ const elements = {
   deleteTaskBtn: document.getElementById("delete-task-btn"),
   hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
   showSideBarBtn: document.getElementById("show-side-bar-btn"),
-  // If you want theme switch, add here
-  // themeSwitch: document.getElementById("switch"),
+  themeSwitch: document.getElementById("theme-switch"), // <- Theme switch checkbox
 };
 
 let activeBoard = "";
@@ -198,6 +197,10 @@ function setupEventListeners() {
       toggleSidebar(true)
     );
   }
+  // Theme switch event listener
+  if (elements.themeSwitch) {
+    elements.themeSwitch.addEventListener("change", toggleTheme);
+  }
 }
 
 // ------------------ Modal/Toggles -------------------
@@ -270,6 +273,13 @@ function saveTaskChanges(taskId) {
   refreshTasksUI();
 }
 
+// ------------------ THEME TOGGLE FUNCTION -------------------
+function toggleTheme() {
+  const isLight = document.body.classList.toggle("light-theme");
+  localStorage.setItem("light-theme", isLight ? "enabled" : "disabled");
+  if (elements.themeSwitch) elements.themeSwitch.checked = isLight;
+}
+
 function toggleSidebar(show) {
   const sidebar = document.getElementById("side-bar-div");
   if (!sidebar) return;
@@ -284,6 +294,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 function init() {
   setupEventListeners();
+
+  // Set theme from localStorage
+  const lightThemeEnabled = localStorage.getItem("light-theme") === "enabled";
+  document.body.classList.toggle("light-theme", lightThemeEnabled);
+  if (elements.themeSwitch) elements.themeSwitch.checked = lightThemeEnabled;
+
   const showSidebar = localStorage.getItem("showSideBar") === "true";
   toggleSidebar(showSidebar);
   fetchAndDisplayBoardsAndTasks();
